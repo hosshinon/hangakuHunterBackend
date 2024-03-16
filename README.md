@@ -4,4 +4,4 @@
 
 # ER図
 
-![ER図](./ER図ver1.drawio.svg)
+![ER図](./ER図ver2.drawio.svg)
