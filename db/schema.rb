@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_16_123110) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_02_053236) do
+  create_table "discounts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "shop_id", null: false
+    t.string "title"
+    t.string "description"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.string "discount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "discount_rate"
+    t.index ["shop_id"], name: "index_discounts_on_shop_id"
+  end
+
   create_table "shops", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "postal_code"
@@ -23,4 +36,5 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_16_123110) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "discounts", "shops"
 end
