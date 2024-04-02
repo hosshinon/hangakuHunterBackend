@@ -6,6 +6,6 @@ class Api::V1::ShopsController < ApplicationController
 
   def show
     shop = Shop.find(params[:id])
-    render json: shop
+    render json: shop, include: :discounts
   end
 end
