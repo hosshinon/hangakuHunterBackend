@@ -17,7 +17,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_02_053236) do
     t.string "description"
     t.datetime "start_date"
     t.datetime "end_date"
-    t.string "discount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "discount_rate"
