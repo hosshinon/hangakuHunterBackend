@@ -15,15 +15,16 @@
   next unless (i + 1).odd?
 
   2.times do |j|
-    start_date = Time.zone.today + j.days
-    end_date = start_date + rand(3..7).days
+    # 割引情報の開始時間(時：分)と終了時間を設定日本時刻で設定
+    start_time = Time.current.change(hour: 9 + j)
+    end_time = start_time + 1.hour
 
     Discount.create!(
       shop:,
       title: "割引キャンペーン#{j + 1}",
       description: "店舗#{shop.name}の割引情報#{j + 1}です。",
-      start_date:,
-      end_date:,
+      start_time:,
+      end_time:,
       discount_rate: rand(5..20),
     )
   end

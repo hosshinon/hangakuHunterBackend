@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_02_053236) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_08_125548) do
   create_table "discounts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "shop_id", null: false
     t.string "title"
     t.string "description"
-    t.datetime "start_date"
-    t.datetime "end_date"
+    t.time "start_time", null: false
+    t.time "end_time", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "discount_rate"
