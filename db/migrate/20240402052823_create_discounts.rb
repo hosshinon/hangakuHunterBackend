@@ -6,7 +6,6 @@ class CreateDiscounts < ActiveRecord::Migration[7.0]
       t.string :description
       t.datetime :start_time
       t.datetime :end_time
-      t.string :discount
       t.integer :discount_rate
       t.timestamps
     end
