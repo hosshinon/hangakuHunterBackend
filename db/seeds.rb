@@ -14,18 +14,18 @@
   # 奇数番目の店舗にのみ割引情報を作成
   next unless (i + 1).odd?
 
-2.times do |j|
-  # 割引情報の開始時間(時：分)と終了時間を設定日本時刻で設定
-  start_time = Time.current.change(hour: rand(9..12), min: [0, 15, 30, 45].sample)
-  end_time = start_time + 1.hour
+  2.times do |j|
+    # 割引情報の開始時間(時：分)と終了時間を設定日本時刻で設定
+    start_time = Time.current.change(hour: rand(9..12), min: [0, 15, 30, 45].sample)
+    end_time = start_time + 1.hour
 
-  Discount.create!(
-    shop: shop,
-    title: "割引キャンペーン#{j + 1}",
-    description: "店舗#{shop.name}の割引情報#{j + 1}です。",
-    start_time: start_time,
-    end_time: end_time,
-    discount_rate: rand(5..20),
-  )
-end
+    Discount.create!(
+      shop:,
+      title: "割引キャンペーン#{j + 1}",
+      description: "店舗#{shop.name}の割引情報#{j + 1}です。",
+      start_time:,
+      end_time:,
+      discount_rate: rand(5..20),
+    )
+  end
 end
