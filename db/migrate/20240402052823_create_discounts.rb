@@ -4,10 +4,10 @@ class CreateDiscounts < ActiveRecord::Migration[7.0]
       t.references :shop, null: false, foreign_key: true
       t.string :title
       t.string :description
-      t.datetime :start_date
-      t.datetime :end_date
+      t.datetime :start_time
+      t.datetime :end_time
       t.string :discount
-
+      t.integer :discount_rate
       t.timestamps
     end
   end
