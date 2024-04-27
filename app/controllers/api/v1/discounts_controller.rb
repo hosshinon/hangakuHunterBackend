@@ -1,19 +1,18 @@
 class Api::V1::DiscountsController < ApplicationController
-  # showアクションを追加
   def show
-    shop = Shop.find(params[:shop_id])
-    discount = shop.discounts.find(params[:id])
-    render json: discount
+    @shop = Shop.find(params[:shop_id])
+    @discount = @shop.discounts.find(params[:id])
+    render json: @discount
   end
 
   def create
-    shop = Shop.find(params[:shop_id])
-    discount = shop.discounts.build(discount_params)
+    @shop = Shop.find(params[:shop_id])
+    @discount = @shop.discounts.build(discount_params)
 
-    if discount.save
-      render json: discount, status: :created
+    if @discount.save
+      render json: @discount, status: :created
     else
-      render json: discount.errors, status: :unprocessable_entity
+      render json: @discount.errors, status: :unprocessable_entity
     end
   end
 
