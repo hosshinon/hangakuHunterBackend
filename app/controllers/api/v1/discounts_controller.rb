@@ -22,15 +22,27 @@ class Api::V1::DiscountsController < ApplicationController
     end
   end
 
+  def update
+    @discount = Discount.find(params[:id])
+    if @discount.update(discount_params)
+      render json: @discount
+    else
+      render json: @discount.errors, status: :unprocessable_entity
+    end
+  end
+
   def destroy
-    @discount = Discounts.find(discount_params)
-    @discount.destroy!
-    head :no_content
+    @discount = Discount.find(params[:id])
+    if @discount.destroy
+      head :no_content
+    else
+      render json: { error: "割引情報の削除に失敗しました" }, status: :unprocessable_entity
+    end
   end
 
   private
 
     def discount_params
-      params.require(:discount).permit(:shop_id, :title, :description, :discount_rate, :start_time, :end_time)
+      params.require(:discount).permit(:id, :shop_id, :title, :description, :discount_rate, :start_time, :end_time)
     end
 end
