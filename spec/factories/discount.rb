@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :discount do
-    association :shop
+    shop_id { "1" }
     title { "新春セール" }
     description { "新年のお祝いに全商品10%オフ！" }
     start_time { Time.current.change(hour: 12) }

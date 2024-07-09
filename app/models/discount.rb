@@ -1,16 +1,18 @@
 class Discount < ApplicationRecord
-  belongs_to :shop
-
-  # 割引率は0以上100以下の整数であること
-  validates :discount_rate, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }
-
-  # タイトルは必須であること
+  validates :shop_id, presence: true
   validates :title, presence: true
-
-  # 説明は必須でないが、存在する場合は最大文字数を設定することもできる
-  validates :description, length: { maximum: 255 }, allow_blank: true
-
-  # 開始時間は必須で、終了時間よりも前であること
   validates :start_time, presence: true
-  validates :end_time, presence: true, comparison: { greater_than: :start_time }
+  validates :end_time, presence: true
+  validates :discount_rate, presence: true, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }
+  validates :description, length: { maximum: 255 }
+
+  validate :end_time_after_start_time
+
+  private
+
+    def end_time_after_start_time
+      if end_time.present? && start_time.present? && end_time <= start_time
+        errors.add(:end_time, "はスタートタイムより後でなければなりません")
+      end
+    end
 end

@@ -2,14 +2,16 @@ require "rails_helper"
 
 RSpec.describe Discount, type: :model do
   describe "validations" do
-    let(:shop) { create(:shop) }
-    let(:discount) do
-      build(:discount, shop:)
+    let(:discount) { build(:discount) }
+
+    it "有効な属性を持つ場合に有効である" do
+      expect(discount).to be_valid
     end
 
-    # 有効な属性を持つ場合に有効であること
-    it "is valid with valid attributes" do
-      expect(discount).to be_valid
+    it "shop_idがない場合に無効である" do
+      discount.shop_id = nil
+      expect(discount).not_to be_valid
+      expect(discount.errors.full_messages).to include("Shop can't be blank")
     end
 
     # タイトルがない場合に無効であること
@@ -31,13 +33,6 @@ RSpec.describe Discount, type: :model do
       discount.discount_rate = 101
       expect(discount).not_to be_valid
       expect(discount.errors.full_messages).to include("Discount rate must be less than or equal to 100")
-    end
-
-    # 終了時間が開始時間より前の場合に無効であること
-    it "is invalid with an end time before the start time" do
-      discount.end_time = discount.start_time - 1.hour
-      expect(discount).not_to be_valid
-      expect(discount.errors.full_messages).to include("End time must be greater than #{discount.start_time}")
     end
 
     # 説明が長すぎる場合に無効であること

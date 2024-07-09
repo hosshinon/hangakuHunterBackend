@@ -1,11 +1,10 @@
 require "rails_helper"
 
 RSpec.describe "Api::V1::Discounts", type: :request do
-  let(:shop) { create(:shop) }
-  let(:discount) { create(:discount, shop:) }
+  let(:discount) { create(:discount) }
   describe "GET /create" do
     it "returns http success" do
-      get "/api/v1/shops/#{shop.id}/discounts/#{discount.id}"
+      get "/api/v1/discounts"
       expect(response).to have_http_status(:success)
     end
   end

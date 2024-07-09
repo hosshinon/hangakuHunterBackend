@@ -1,13 +1,15 @@
 class CreateDiscounts < ActiveRecord::Migration[7.0]
   def change
     create_table :discounts do |t|
-      t.references :shop, null: false, foreign_key: true
+      t.string :shop_id
       t.string :title
       t.string :description
       t.datetime :start_time
       t.datetime :end_time
       t.integer :discount_rate
-      t.timestamps
+      t.datetime "created_at", null: false
+      t.datetime "updated_at", null: false
+      t.index ["shop_id"], name: "index_discounts_on_shop_id"
     end
   end
 end
