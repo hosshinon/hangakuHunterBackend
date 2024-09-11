@@ -1,11 +1,11 @@
 class Api::V1::DiscountsController < ApplicationController
   def index
-    @discounts = Discount.all
+    @discounts = Discount.joins("INNER JOIN shops ON shops.place_id = discounts.place_id").all
     render json: @discounts
   end
 
   def show
-    @discounts = Discount.where(shop_id: params[:id])
+    @discounts = Discount.where(place_id: params[:id])
     if @discounts.present?
       render json: @discounts
     else
@@ -43,6 +43,6 @@ class Api::V1::DiscountsController < ApplicationController
   private
 
     def discount_params
-      params.require(:discount).permit(:id, :shop_id, :title, :description, :discount_rate, :start_time, :end_time)
+      params.require(:discount).permit(:place_id, :title, :description, :discount_rate, :start_time, :end_time)
     end
 end
