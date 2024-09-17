@@ -1,5 +1,5 @@
 class Discount < ApplicationRecord
-  validates :place_id, presence: true
+  validates :shop_id, presence: true
   validates :title, presence: true
   validates :start_time, presence: true
   validates :end_time, presence: true
@@ -7,7 +7,7 @@ class Discount < ApplicationRecord
   validates :description, length: { maximum: 255 }
   validate :end_time_after_start_time
 
-  belongs_to :shop, foreign_key: "place_id", primary_key: "place_id", inverse_of: :discounts
+  belongs_to :shop, primary_key: :place_id
 
   private
 

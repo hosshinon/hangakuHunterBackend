@@ -1,7 +1,7 @@
 class CreateShops < ActiveRecord::Migration[7.0]
   def change
-    create_table :shops do |t|
-      t.string :place_id
+    create_table :shops, id: false  do |t|
+      t.string :place_id, null: false, primary_key: true
       t.string :name
       t.decimal :rating
       t.integer :user_ratings_total

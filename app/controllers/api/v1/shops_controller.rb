@@ -1,12 +1,16 @@
 class Api::V1::ShopsController < ApplicationController
+  def index
+    @shops = Shop.includes(:discounts).where.not(discounts: { id: nil }).all
+    render json: @shops
+  end
+
   def create
     @shop = Shop.new(shop_params)
-
     # すでに存在するかチェック
     if Shop.exists?(place_id: @shop.place_id)
+      head :ok # 既に存在する場合はステータスコード200を返す
       return
     end
-
     if @shop.save
       render json: @shop, status: :created
     else
