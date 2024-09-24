@@ -36,4 +36,6 @@ group :development, :test do
   gem "rubocop-faker"
   gem "rubocop-rails"
   gem "rubocop-rspec"
+  # 環境毎の設定管理を行う
+  gem "config"
 end
