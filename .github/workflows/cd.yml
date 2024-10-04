@@ -20,7 +20,6 @@ env:
 # ECR push するための権限設定
 permissions:
   contents: read
-  id-token: write
 
 # 当 workflow が行う処理
 jobs:
