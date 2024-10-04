@@ -34,6 +34,7 @@ group :development, :test do
   # テストフレームワーク rspec を導入する
   gem "factory_bot_rails"
   gem "faker"
+  gem "json_spec"
   gem "rspec-rails"
   # rubocop を使えるようにする。
   gem "rubocop-faker"

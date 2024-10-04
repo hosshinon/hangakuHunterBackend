@@ -65,4 +65,9 @@ RSpec.configure do |config|
 
   # FactoryBotのメソッドを省略して使えるようにする
   config.include FactoryBot::Syntax::Methods
+
+  require 'json_spec'
+  RSpec.configure do |config|
+    config.include JsonSpec::Helpers
+  end
 end
