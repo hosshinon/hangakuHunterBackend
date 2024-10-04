@@ -10,31 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_02_053236) do
+ActiveRecord::Schema[7.0].define(version: 2024_09_13_202200) do
   create_table "discounts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "shop_id", null: false
     t.string "title"
     t.string "description"
-    t.datetime "start_date"
-    t.datetime "end_date"
-    t.string "discount"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer "discount_rate"
+    t.string "shop_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "discount_rate"
     t.index ["shop_id"], name: "index_discounts_on_shop_id"
   end
 
-  create_table "shops", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "shops", primary_key: "place_id", id: :string, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
-    t.string "postal_code"
-    t.string "address"
-    t.string "opening_hours"
-    t.string "homepage"
-    t.float "latitude"
-    t.float "longitude"
+    t.decimal "rating", precision: 10
+    t.integer "user_ratings_total"
+    t.string "formatted_address"
+    t.string "international_phone_number"
+    t.string "website"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "discounts", "shops"
+  add_foreign_key "discounts", "shops", primary_key: "place_id"
 end

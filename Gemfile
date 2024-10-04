@@ -23,12 +23,18 @@ gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 # cors設定を管理する
 gem "rack-cors"
 
+# 環境毎の設定管理を行う
+gem "config"
+
 group :development, :test do
   # pry コンソールを使えるようにする。
   gem "pry-byebug"
   gem "pry-doc"
   gem "pry-rails"
   # テストフレームワーク rspec を導入する
+  gem "factory_bot_rails"
+  gem "faker"
+  gem "json_spec"
   gem "rspec-rails"
   # rubocop を使えるようにする。
   gem "rubocop-faker"
