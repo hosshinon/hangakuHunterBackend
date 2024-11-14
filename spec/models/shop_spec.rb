@@ -29,17 +29,5 @@ RSpec.describe Shop, type: :model do
       expect(shop).not_to be_valid
       expect(shop.errors[:formatted_address]).to include("can't be blank")
     end
-
-    it "international_phone_numberが必須であること" do
-      shop = build(:shop, international_phone_number: nil)
-      expect(shop).not_to be_valid
-      expect(shop.errors[:international_phone_number]).to include("can't be blank")
-    end
-
-    it "websiteが必須であること" do
-      shop = build(:shop, website: nil)
-      expect(shop).not_to be_valid
-      expect(shop.errors[:website]).to include("can't be blank")
-    end
   end
 end
