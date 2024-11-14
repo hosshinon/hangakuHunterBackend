@@ -29,6 +29,5 @@ RSpec.describe Shop, type: :model do
       expect(shop).not_to be_valid
       expect(shop.errors[:formatted_address]).to include("can't be blank")
     end
-
   end
 end
